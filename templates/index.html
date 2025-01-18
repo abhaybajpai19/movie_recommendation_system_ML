@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: -webkit-linear-gradient(45deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        select {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        button {
+            background-color: #ff7e5f;
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #feb47b;
+        }
+        .recommendations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .movie {
+            max-width: 180px;
+            text-align: center;
+        }
+        .movie img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .movie h5 {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #ff7e5f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Movie Recommender System</h1>
+        <p class="subtitle">by Abhay Bajpai, B.Tech CSE</p>
+        <form method="POST">
+            <select name="movie_name" required>
+                <option value="" disabled selected>Search for a Movie</option>
+                {% for movie in movies %}
+                    <option value="{{ movie }}">{{ movie }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Recommend</button>
+        </form>
+        <div class="recommendations">
+            {% for name, poster in recommendations %}
+                <div class="movie">
+                    <img src="{{ poster }}" alt="Poster">
+                    <h5>{{ name }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
